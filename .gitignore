@@ -1,0 +1,5 @@
+/rolling/static
+/rolling/db.sqlite3
+/base.sql
+*/rolling/site_config.py
+__pycache__/
