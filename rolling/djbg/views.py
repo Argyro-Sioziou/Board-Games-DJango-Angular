@@ -1,15 +1,35 @@
-from django.http import HttpResponse
+from .models import Game, Tag
+from .serializers import GameSerializer, TagSerializer
+from rest_framework import generics
 
-def index(request):
-    return HttpResponse("Hello, world. You are at the djbg index.")
+from django.contrib.staticfiles import views
 
-def game(request, game_id):
-    return HttpResponse("You are looking at game %s." % game_id)
+def index(request, path=''):
+    if (path.endswith('.js')):
+        return views.serve(request, path)
+    else:
+        return views.serve(request, 'index.html')
 
-def reviews(request, game_id):
-    response = "You are looking at the reviews of game %s."
-    return HttpResponse(response % game_id)
+class GameList(generics.ListCreateAPIView):
+    serializer_class = GameSerializer
 
-def profile(request, profile_id):
-    response = "You are looking at profile %s."
-    return HttpResponse(response % profile_id)
+    def get_queryset(self):
+        queryset = Game.objects.all()
+        name = self.request.query_params.get('name', None)
+        if name is not None:
+            queryset = queryset.filter(name__contains=name)
+        return queryset
+
+class GameDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+class TagList(generics.ListCreateAPIView):
+    serializer_class = TagSerializer
+
+    def get_queryset(self):
+        queryset = Tag.objects.all()
+        name = self.request.query_params.get('name', None)
+        if name is not None:
+            queryset = queryset.filter(name__contains=name)
+        return queryset

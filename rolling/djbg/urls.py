@@ -1,12 +1,10 @@
-from django.urls import path
+from django.urls import re_path
 
 from . import views
 
-app_name = 'djbr'
+app_name = 'djbg'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('games/<int:game_id>/', views.game, name='book'),
-    path('games/<int:game_id>/reviews/', views.reviews, name='reviews'),
-    path('profile/<int:profile_id>/', views.profile, name='profile'),
+    re_path('^games/?$', views.GameList.as_view()),
+    re_path(r'^games/(?P<pk>\d+)/?$', views.GameDetail.as_view()),
 ]

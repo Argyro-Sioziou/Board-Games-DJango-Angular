@@ -1,0 +1,32 @@
+{% extends "djbg/base.html" %}
+
+{% block content %}
+{% if not game_reviews %}
+  <h2 class="bg-warning">No reviews yet.</h2>
+  <a href="{% url 'djbg:review' game_id %}">
+     <h1>Create review</h1>
+  </a>
+{% else %}
+  <div class="list-group">
+    {% for review in game_reviews %}
+      <div class="list-group-item">
+        Summary: {{ review.title }}
+      </div>
+      <div class="list-group-item">
+        Review: {{ review.text }}
+      </div>
+      <div class="list-group-item">
+        Date reviewed: {{ review.review_date }}
+      </div>
+      <div class="list-group-item">
+        <a href="{% url 'djbg:review' review.game.id review.id %}">
+           <span aria-hidden="true">Edit review</span>
+        </a>
+      </div>
+    {% endfor %}
+    <a href="{% url 'djbg:review' game_id %}">
+       <h1>Create review</h1>
+    </a>
+  </div>
+{% endif %}
+{% endblock %}
