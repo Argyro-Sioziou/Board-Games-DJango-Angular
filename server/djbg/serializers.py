@@ -12,7 +12,7 @@ class GameSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ('name')
+        fields = ('id', 'name')
 
 class CreatorSerializer(serializers.ModelSerializer):
     class Meta:

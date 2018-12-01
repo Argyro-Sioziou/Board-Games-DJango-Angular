@@ -24,6 +24,9 @@ class GameDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
 
+    def get_queryset(self):
+        queryset = Game.objects.all()
+
 class TagList(generics.ListCreateAPIView):
     serializer_class = TagSerializer
 

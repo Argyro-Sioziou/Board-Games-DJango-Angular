@@ -1,0 +1,22 @@
+.details {
+  padding-bottom: 30%;
+  padding-top: 10%;
+}
+
+.badge {
+  padding: 0.5em 0.8em;
+  background-color: #DF1C1C;
+}
+
+.scroll {
+  max-height: 170px;
+  overflow-y: auto;
+}
+
+.jumbotron {
+  background-color: #f2f2f2;
+}
+
+.card-body {
+  background-color: #f4f2f2;
+}
