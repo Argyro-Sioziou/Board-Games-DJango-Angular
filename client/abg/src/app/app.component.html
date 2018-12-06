@@ -1,31 +1,33 @@
-<div class="container">
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <img src="assets/handmade.svg" width="70" height="70" class="d-inline-block " alt="">
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <a class="navbar-brand">
+      <img src="assets/handmade.svg" class="img-fluid d-inline-block" width="12%" height="auto" alt="">
       Rolling
     </a>
     <button class="navbar-toggler"
         type="button"
+        (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
-        aria-expanded="false"
         aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
       <ul class="navbar-nav right">
         <li class="nav-item">
-          <a class="nav-link" href="#">Αρχική</a>
+          <a type="button" placement="bottom" ngbTooltip="Αρχική" class="nav-link item-image" routerLink="/dashboard">
+            <img src="assets/puzzle.svg" width="40" height="40" class="d-inline-block hoverable" alt="">
+          </a>
         </li>
         <li class="nav-item">
-            <a type="button" placement="bottom" ngbTooltip="Είσοδος/Εγγραφή" class="nav-link" href="#">
-              <img src="assets/pawn.svg" width="60" height="60" class="d-inline-block " alt="">
-            </a>
+          <a type="button" placement="bottom" ngbTooltip="Είσοδος/Εγγραφή" class="nav-link right-image">
+            <img src="assets/pawn.svg" width="40" height="40" class="d-inline-block hoverable " alt="">
+          </a>
         </li>
       </ul>
     </div>
-  </nav>
-  <app-games></app-games>
-  <app-games></app-games>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>

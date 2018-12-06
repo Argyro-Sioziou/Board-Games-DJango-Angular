@@ -5,18 +5,29 @@
   margin-bottom: 1em;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
+  background-color: #e9ecef !important;
+  color: #af0008;
 }
 
 .navbar-brand {
   font-family: "Comic Sans MS";
   font-size: 150%;
-}
-
-.nav-link {
-  vertical-align: middle;
+  margin-left: 3%;
 }
 
 .right {
   position: absolute;
-  right: 10px;
+  right: 3%;
+}
+
+.right-image {
+  margin-right: 2%;
+}
+
+.hoverable {
+  border-radius: 2em;
+}
+
+.item-image {
+  margin-right: 10px;
 }
