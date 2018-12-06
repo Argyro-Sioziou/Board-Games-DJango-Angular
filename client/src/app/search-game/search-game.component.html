@@ -1,0 +1,10 @@
+<div id="search-component">
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Αναζήτηση"/>
+  <ul class="search-result list-unstyled">
+    <li *ngFor="let game of games$ | async" >
+      <a routerLink="/games/{{game.id}}">
+        {{game.name}}
+      </a>
+    </li>
+  </ul>
+</div>

@@ -10,6 +10,7 @@ import { RatingsComponent } from './ratings/ratings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { SearchGameComponent } from './search-game/search-game.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     RatingsComponent,
     DashboardComponent,
     ReviewsComponent,
-    PaginationComponent
+    PaginationComponent,
+    SearchGameComponent
   ],
   imports: [
     BrowserModule,

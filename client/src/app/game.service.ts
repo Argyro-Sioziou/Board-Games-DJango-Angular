@@ -34,6 +34,18 @@ export class GameService {
     );
   }
 
+  /* GET games whose title contains search term */
+  searchGames(term: string): Observable<Game[]> {
+    if (!term.trim()) {
+      // if not search term, return empty book array.
+      return of([]);
+    }
+    return this.http.get<Game[]>(`api/games/?name=${term}`).pipe(
+      tap(_ => this.log(`found games matching "${term}"`)),
+      catchError(this.handleError<Game[]>('searchGames', []))
+    );
+  }
+
   private log(message: string): void {
     this.messageService.add('GameService: ' + message);
   }
