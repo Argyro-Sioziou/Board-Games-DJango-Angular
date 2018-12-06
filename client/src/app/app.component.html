@@ -1,19 +1,9 @@
 <nav class="navbar navbar-expand navbar-light bg-light">
-    <a class="navbar-brand">
-      <img src="assets/handmade.svg" class="img-fluid d-inline-block" width="12%" height="auto" alt="">
-      Rolling
-    </a>
-    <button class="navbar-toggler"
-        type="button"
-        (click)="isCollapsed = !isCollapsed"
-        [attr.aria-expanded]="!isCollapsed"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+    <div class="collapse navbar-collapse">
+      <a class="navbar-brand">
+        <img src="assets/handmade.svg" class="img-fluid d-inline-block" width="12%" height="auto" alt="">
+        Rolling
+      </a>
       <ul class="navbar-nav right">
         <li class="nav-item">
           <a type="button" placement="bottom" ngbTooltip="Αρχική" class="nav-link item-image" routerLink="/games">
