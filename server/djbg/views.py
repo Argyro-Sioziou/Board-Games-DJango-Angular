@@ -21,11 +21,14 @@ class GameList(generics.ListCreateAPIView):
         return queryset
 
 class GameDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Game.objects.all()
     serializer_class = GameSerializer
 
     def get_queryset(self):
         queryset = Game.objects.all()
+        name = self.request.query_params.get('name', None)
+        if name is not None:
+            queryset = queryset.filter(name__contains=name)
+        return queryset
 
 class TagList(generics.ListCreateAPIView):
     serializer_class = TagSerializer
