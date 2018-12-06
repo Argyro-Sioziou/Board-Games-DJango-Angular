@@ -5,18 +5,46 @@
 
 .badge {
   padding: 0.5em 0.8em;
-  background-color: #DF1C1C;
+  background-color: #DF1C1C !important;
 }
 
 .scroll {
   max-height: 170px;
   overflow-y: auto;
+
 }
 
 .jumbotron {
-  background-color: #f2f2f2;
+  font-size: 18px;
+  background-color: rgb(233, 234, 209, 0) !important;
+  background-image: url("../../assets/wood-horizontal.jpeg");
 }
 
 .card-body {
   background-color: #f4f2f2;
+}
+
+.card {
+  margin-top: 3px;
+  background-color: transparent;
+}
+
+.card-body {
+  background-color: transparent;
+}
+
+.card .card-body .card-text {
+  color: black;
+}
+
+.back{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  cursor: pointer;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
