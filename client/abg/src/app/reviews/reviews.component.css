@@ -1,0 +1,26 @@
+.review {
+  margin: 5px;
+}
+
+.center {
+    float: left;
+    margin-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+}
+
+.username {
+  color: #d4d6d8;
+  font-size: small;
+}
+
+.scroll {
+  max-height: 170px;
+  overflow-y: auto;
+}
+
+.content {
+  background-color: #ffffff;
+  border-radius: 1em;
+}
