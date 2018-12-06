@@ -9,5 +9,5 @@ A web app in greek about board games
 
 # Tools
 * Django
-* React
+* Angular
 * MySQL
