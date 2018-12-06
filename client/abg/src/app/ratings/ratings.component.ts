@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Game } from '../game';
+import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-ratings',
@@ -9,21 +8,12 @@ import { Game } from '../game';
 
 export class RatingsComponent implements OnInit {
 
-  game: Game = {
-    id: 1,
-    name: "Wizard",
-    rules: "Rules",
-    price: 10,
-    rate: 5,
-    min_age: 10,
-    max_age: 100,
-    min_num_of_players: 1,
-    max_num_of_players: 100,
-    creator: "KAISSA",
-    tags: ["Μπλόφα", "Χαρτιά"],
-  }
+  @Input()
+  readonly: String;
 
-  readonly = false;
+  @Input()
+  rate: number;
+
   hovered = 0;
 
   constructor() {
