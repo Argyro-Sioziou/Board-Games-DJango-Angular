@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let game of games" class="col-lg-3 col-sm-6 game" routerLink="/game/{{game.id}}">
+      <div class="sunny-morning-gradient">
+        <img src="assets/wizard.jpg" class="img-fluid image">
+      </div>
+      <div class="middle">
+        <h1>{{ game.name | uppercase }}</h1>
+        <ul class="list-unstyled list-inline">
+          <li>
+            <app-ratings readonly="true" [rate]="game.rate"></app-ratings><span>   (</span>{{ game.rate }}<span>)</span>
+          </li>
+          <li>
+            <img class="icon" src="assets/players.svg" height="25" width="25">
+            {{ game.min_num_of_players }}<span> - </span>{{ game.max_num_of_players }}
+          </li>
+          <li>
+            <img src="assets/baby.svg" height="25" width="25">
+            {{ game.min_age }}<span> - </span>{{ game.max_age }}
+          </li>
+        </ul>
+        <ul class="list-unstyled list-inline">
+          <li *ngFor="let tag of game.tags" class="list-inline-item">
+            &nbsp;
+            <span class="badge">{{ tag }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
