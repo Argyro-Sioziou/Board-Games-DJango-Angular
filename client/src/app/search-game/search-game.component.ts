@@ -19,7 +19,9 @@ export class SearchGameComponent implements OnInit {
 
   games$: Observable<Game[]>;
 
-  private searchTerms = new Subject<string>();
+  private searchTerms = new Subject<String>();
+
+  private arrowkeyLocation = 0;
 
   constructor(private gameService: GameService) { }
 
@@ -39,6 +41,22 @@ export class SearchGameComponent implements OnInit {
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  arrowNavigation(event: KeyboardEvent) {
+    switch (event.keyCode) {
+        case 38: // this is the ascii of arrow up
+                 if(this.arrowkeyLocation != 0 ) {
+                   this.arrowkeyLocation--;
+                 }
+                 break;
+        case 40: // this is the ascii of arrow down
+                 this.arrowkeyLocation++;
+                 if(this.arrowkeyLocation == this.games$.length) {
+                   this.arrowkeyLocation = 0;
+                 }
+                 break;
+    }
   }
 
 }

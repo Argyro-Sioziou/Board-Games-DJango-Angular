@@ -1,0 +1,30 @@
+.search-result li a {
+  color: #888;
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  width: 199px;
+  border-radius: 0.5em;
+}
+
+.search-result li a:hover {
+  background-color: #f2f2f2;
+}
+
+.active {
+  color: #DF1C1C !important;
+}
+
+#search-box {
+  border-radius: 0.5em;
+  height: 2em;
+  width: 200px;
+}
+
+ul.search-result {
+  background-color: #ffffff;
+  border-radius: 0.5em;
+  margin-top: 0;
+  padding-left: 0;
+  width: 200px;
+}
