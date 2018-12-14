@@ -1,4 +1,4 @@
-<ngb-rating [(rate)]="rate" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly" max=5>
+<ngb-rating [(rate)]="this.rate" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly" (rateChange)="onChange()" max=5>
   <ng-template let-fill="fill" let-index="index">
     <span class="star" [class.filled]="fill === 100">&#9733;</span>
   </ng-template>

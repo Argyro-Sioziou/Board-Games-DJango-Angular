@@ -52,9 +52,6 @@ export class SearchGameComponent implements OnInit {
                  break;
         case 40: // this is the ascii of arrow down
                  this.arrowkeyLocation++;
-                 if(this.arrowkeyLocation == this.games$.length) {
-                   this.arrowkeyLocation = 0;
-                 }
                  break;
     }
   }

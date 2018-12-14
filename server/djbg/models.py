@@ -1,6 +1,9 @@
 from django.db import models
 from PIL import Image
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)
@@ -30,15 +33,22 @@ class Game(models.Model):
         return "%s %s %s %s %s %s %s %s %s" % (self.name, self.creator, self.rules, self.price, self.rate, self.min_age, self.max_age, self.min_num_of_players, self.max_num_of_players)
 
 class Profile(models.Model):
-    name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    mail = models.EmailField()
-    password = models.CharField(max_length=20)
+    # Every User will have one related Profile model and vice versa
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth_date = models.DateField()
     games = models.ManyToManyField(Game, related_name='games', blank=True)
 
     def __str__(self):
-        return "%s %s %s %s" % (self.name, self.surname, self.mail, self.birth_date)
+        return "%s %s" % (self.user.username, self.birth_date)
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
 class Picture(models.Model):
     picture = models.ImageField(upload_to='static')

@@ -1,28 +1,28 @@
-<div class="jumbotron game">
+<div class="jumbotron container game">
   <div class="row">
     <div class="col-lg-3 offset-lg-1">
       <img src="assets/wizard.jpg" class="img-fluid" width="100%" height="auto">
     </div>
     <div class="col-lg-5 offset-lg-2">
-        <h1>{{ game.name | uppercase }}</h1>
+        <h1>{{ game?.name | uppercase }}</h1>
         <ul class="list-unstyled list-inline">
           <li class="list-inline-item">
             &nbsp;
             <img src="assets/baby.svg" height="25" width="25">
-            {{ game.min_age }}<span> - </span>{{ game.max_age }}
+            {{ game?.min_age }}<span> - </span>{{ game?.max_age }}
           </li>
           <li class="list-inline-item">
             &nbsp;
             <img class="icon" src="assets/players.svg" height="25" width="25">
-            {{ game.min_num_of_players }}<span> - </span>{{ game.max_num_of_players }}
+            {{ game?.min_num_of_players }}<span> - </span>{{ game?.max_num_of_players }}
           </li>
           <li class="list-inline-item">
             &nbsp;
-            <app-ratings readonly="true" [rate]="game.rate"></app-ratings><span>   (</span>{{ game.rate }}<span>)</span>
+            <app-ratings readonly="true" [rate]="game?.rate"></app-ratings><span>   (</span>{{ game?.rate }}<span>)</span>
           </li>
         </ul>
         <ul class="list-unstyled list-inline">
-          <li *ngFor="let tag of game.tags" class="list-inline-item">
+          <li *ngFor="let tag of game?.tags" class="list-inline-item">
             &nbsp;
             <span class="badge">
               {{ tag }}
@@ -32,18 +32,18 @@
         <ul class="list-unstyled">
           <li>
             &nbsp;
-            Μέση τιμή πώλησης: {{ game.price }} <img src="assets/euro.svg" height="17" width="17">
+            Μέση τιμή πώλησης: {{ game?.price }} <img src="assets/euro.svg" height="17" width="17">
           </li>
           <li>
             &nbsp;
-            Δημιουργός: {{ game.creator }} <img src="assets/pencil.svg" height="17" width="17">
+            Δημιουργός: {{ game?.creator }} <img src="assets/pencil.svg" height="17" width="17">
           </li>
         </ul>
     </div>
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Κανόνες</h4>
-        <p class="card-text scroll">{{ game.rules }}</p>
+        <p class="card-text scroll">{{ game?.rules }}</p>
       </div>
     </div>
   </div>

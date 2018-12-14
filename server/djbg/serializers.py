@@ -22,7 +22,7 @@ class CreatorSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ('game', 'rate', 'text', 'review_date')
+        fields = ('id', 'game', 'rate', 'text', 'review_date')
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,0 +1,12 @@
+<div class="sidenav">
+  <app-search-game></app-search-game>
+  <div class="form-group">
+    <h4>Κατηγορίες:</h4>
+    <div *ngFor="let tag of tags" class="form-check" value=[tag.name]>
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input">
+        {{ tag.name }}
+      </label>
+  </div>
+  </div>
+</div>

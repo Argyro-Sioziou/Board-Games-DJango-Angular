@@ -3,7 +3,7 @@
   display: block;
   text-decoration: none;
   overflow: hidden;
-  width: 199px;
+  width: 10em;
   border-radius: 0.5em;
 }
 
@@ -18,7 +18,7 @@
 #search-box {
   border-radius: 0.5em;
   height: 2em;
-  width: 200px;
+  width: 10em;
 }
 
 ul.search-result {
@@ -26,5 +26,5 @@ ul.search-result {
   border-radius: 0.5em;
   margin-top: 0;
   padding-left: 0;
-  width: 200px;
+  width: 10em;
 }

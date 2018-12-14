@@ -1,182 +1,49 @@
 <div class="col-12 jumbotron">
-  <h3>Αξιολογήσεις</h3>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Αξιολογήσεις</h3>
+    </div>
+    <div class="offset-sm-4">
+      <button type="button" class="reviewButton btn btn-small" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+        <img src="assets/review.svg" width="20px" height="auto" class="img-fluid center" alt="">
+        Γράψε τη δική σου αξιολόγηση!
+      </button>
+    </div>
+  </div>
   <br>
-  <div class="row review">
+  <br>
+  <div id="collapseExample" [ngbCollapse]="isCollapsed" class="row review">
     <div class="col-2 col-sm-1">
       <div class="row">
         <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
       </div>
     </div>
     <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
+      <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
+        <div class="form-group">
+        <!--  <app-ratings readonly="" [rate]='this.rate' (rated)='onRated($event)'></app-ratings> -->
+          <span class="username">My name</span>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="text" [(ngModel)]="review.text" placeholder="Γράψε εδώ..." name="text" required>
+        </div>
+        <button type="submit" class="reviewButton btn btn-small">Προσθήκη</button>
+      </form>
     </div>
   </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1 offset-2">
-      <div class="row">
-        <img src="assets/pawn.svg" width="70%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-8 content">
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl fhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
+  <div class="row review" *ngFor="let review of reviews">
     <div class="col-2 col-sm-1">
       <div class="row">
         <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
       </div>
     </div>
     <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
+      <app-ratings readonly="true" [rate]="review.rate"></app-ratings>
       &nbsp;
       <span class="username">My name</span>
       <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1">
-      <div class="row">
-        <img src="assets/pawn.svg" width="100%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-10 content">
-      <app-ratings readonly="true" [rate]="3"></app-ratings>
-      &nbsp;
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh  hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh hewdwdfsfl esflseg slegvehfgbesg vjagcdshgcshdgj gds jdgj gjg sjdgvdsjgvjakgvd agv avgdfh gkvfhvgdfjv gfd fhabjhvbdf jvhagbdfv adfj jf gvjdkf gkgv afdhgkhv gdkvg d fasjhv ldjfhv lafdhvlfdhvdfhvladhv lhfd ljhvd hfaslhvfldvhfdhvlda hvdfh vhvd avhdffhv lfdhs lfhvsdh  dshf vhish  df hbl ds hblh</p>
-    </div>
-  </div>
-  <div class="row review">
-    <div class="col-2 col-sm-1 offset-2">
-      <div class="row">
-        <img src="assets/pawn.svg" width="70%" height="auto" class="img-fluid center" alt="">
-      </div>
-    </div>
-    <div class="col-8 content">
-      <span class="username">My name</span>
-      <br>
-      <p class="scroll"> hewdwdfsfl fhvsdh  dshf vhish  df hbl ds hblh</p>
+      <p class="scroll">{{ review.text }}</p>
     </div>
   </div>
   <div class="row review">
@@ -192,5 +59,5 @@
     </div>
   </div>
   <br>
-  <app-pagination [collectionSize]="30"></app-pagination>
+  <app-pagination [collectionSize]="reviews?.length"></app-pagination>
 </div>
