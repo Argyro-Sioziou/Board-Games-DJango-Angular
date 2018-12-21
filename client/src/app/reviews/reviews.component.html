@@ -23,7 +23,7 @@
       <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
         <div class="form-group">
           <app-ratings readonly="" [rate]='this.rate' (rated)='onRated($event)'></app-ratings>
-          <span class="username">{{ this.rate }}My name</span>
+          <span class="username">My name</span>
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="text" [(ngModel)]="review.text" placeholder="Γράψε εδώ..." name="text" required>

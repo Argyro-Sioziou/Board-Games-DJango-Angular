@@ -37,11 +37,12 @@ export class ReviewsComponent implements OnInit {
     return review;
   }
 
-  onRated(rate: number) {
-    this.review.rate = this.rate;
+  onRated(event: number) {
+    this.review.rate = event;
   }
 
   onSubmit(): void {
+    this.isCollapsed = true;
     this.reviewService.addReview(this.review)
       .subscribe(review => {
         if (review) {
