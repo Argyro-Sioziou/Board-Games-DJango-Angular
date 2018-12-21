@@ -5,7 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from './message.service';
 
-import { Game } from "./game";
+import { Game } from './game';
 
 @Injectable({
   providedIn: 'root'

@@ -38,7 +38,7 @@ export class ReviewsComponent implements OnInit {
   }
 
   onRated(rate: number) {
-    this.rate = rate;
+    this.review.rate = this.rate;
   }
 
   onSubmit(): void {

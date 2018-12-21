@@ -35,11 +35,10 @@ class Game(models.Model):
 class Profile(models.Model):
     # Every User will have one related Profile model and vice versa
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField()
     games = models.ManyToManyField(Game, related_name='games', blank=True)
 
     def __str__(self):
-        return "%s %s" % (self.user.username, self.birth_date)
+        return "%s" % (self.user.username)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
