@@ -17,7 +17,7 @@ export class ReviewsComponent implements OnInit {
 
   rate = 0;
 
-  private isCollapsed = true;
+  isCollapsed = true;
 
   constructor(private route: ActivatedRoute, private reviewService: ReviewService ) { }
 
