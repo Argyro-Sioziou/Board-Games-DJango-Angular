@@ -21,7 +21,7 @@ export class SearchGameComponent implements OnInit {
 
   private searchTerms = new Subject<String>();
 
-  private arrowkeyLocation = 0;
+  private arrowKeyLocation = 0;
 
   constructor(private gameService: GameService) { }
 
@@ -46,12 +46,12 @@ export class SearchGameComponent implements OnInit {
   arrowNavigation(event: KeyboardEvent) {
     switch (event.keyCode) {
         case 38: // this is the ascii of arrow up
-                 if(this.arrowkeyLocation != 0 ) {
-                   this.arrowkeyLocation--;
+                 if (this.arrowKeyLocation !== 0 ) {
+                   this.arrowKeyLocation--;
                  }
                  break;
         case 40: // this is the ascii of arrow down
-                 this.arrowkeyLocation++;
+                 this.arrowKeyLocation++;
                  break;
     }
   }
