@@ -1,5 +1,5 @@
-from .models import Game, Tag, Review
-from .serializers import GameSerializer, TagSerializer, ReviewSerializer
+from .models import Game, Tag, Review, Comment
+from .serializers import GameSerializer, TagSerializer, ReviewSerializer, CommentSerializer
 from rest_framework import generics
 
 from django.contrib.staticfiles import views
@@ -68,6 +68,17 @@ class GameDetail(generics.RetrieveUpdateDestroyAPIView):
 class TagList(generics.ListCreateAPIView):
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
+
+
+class CommentList(generics.ListCreateAPIView):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        queryset = Comment.objects.all()
+        review_id = self.kwargs.get('review_id', None)
+        if review_id is not None:
+            queryset = queryset.filter(review=review_id)
+        return queryset
 
 
 class ReviewList(generics.ListCreateAPIView):

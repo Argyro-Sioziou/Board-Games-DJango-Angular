@@ -38,7 +38,7 @@ class Profile(models.Model):
     games = models.ManyToManyField(Game, related_name='games', blank=True)
 
     def __str__(self):
-        return "%s" % (self.user.username)
+        return "%s %s" % (self.id, self.user.username)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -70,6 +70,7 @@ class Review(models.Model):
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, related_name='comments', on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, related_name='comments', on_delete=models.CASCADE)
     text = models.TextField(default="")
     comment_date = models.DateTimeField()
 

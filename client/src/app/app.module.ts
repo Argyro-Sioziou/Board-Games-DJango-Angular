@@ -13,11 +13,13 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SearchGameComponent } from './search-game/search-game.component';
 import { FiltersComponent } from './filters/filters.component';
+import { CommentsComponent } from './comments/comments.component';
 
 import { GameService } from './game.service';
 import { MessageService } from './message.service';
 import { TagService } from './tag.service';
 import { ReviewService } from './review.service';
+import { CommentService } from './comment.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { ReviewService } from './review.service';
     PaginationComponent,
     SearchGameComponent,
     FiltersComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { ReviewService } from './review.service';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [ GameService, MessageService, TagService, ReviewService ],
+  providers: [ GameService, MessageService, TagService, ReviewService, CommentService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

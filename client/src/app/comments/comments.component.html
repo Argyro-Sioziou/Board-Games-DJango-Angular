@@ -1,0 +1,30 @@
+<div class="row comment">
+  <div class="col-2 col-sm-1 offset-2">
+      <div class="row">
+        <img src="assets/pawn.svg" width="70%" height="auto" class="img-fluid center" alt="">
+      </div>
+    </div>
+    <div class="col-8 content">
+      <form (ngSubmit)="onSubmit()" #commentForm="ngForm">
+        <div class="form-group">
+          <span class="username">My name</span>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="text" [(ngModel)]="comment.text" placeholder="Σχολίασε εδώ την αξιολόγηση..." name="text" required>
+          <button type="submit" class="commentButton btn btn-xs">Προσθήκη</button>
+        </div>
+      </form>
+    </div>
+</div>
+<div class="row comment" *ngFor="let comment of comments">
+    <div class="col-2 col-sm-1 offset-2">
+      <div class="row">
+        <img src="assets/pawn.svg" width="70%" height="auto" class="img-fluid center" alt="">
+      </div>
+    </div>
+    <div class="col-8 content">
+      <span class="username">My name</span>
+      <br>
+      <p class="scroll"> {{ comment.text }}</p>
+    </div>
+  </div>

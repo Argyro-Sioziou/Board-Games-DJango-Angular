@@ -1,0 +1,39 @@
+.comment {
+  margin: 5px;
+}
+
+.username {
+  color: #d4d6d8;
+  font-size: small;
+}
+
+.scroll {
+  max-height: 170px;
+  overflow-y: auto;
+}
+
+.content {
+  background-color: #ffffff;
+  border-radius: 1em;
+}
+
+.commentButton {
+  float: right;
+  background-color: #D80027;
+  color: #ffffff;
+  border-radius: 0.8em;
+}
+
+.btn {
+  text-transform:none;
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 .2rem rgba(255, 0, 0, 0.25);
+}
+
+.form-control:focus {
+  border-color: #9c0020;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.25);
+}
+
