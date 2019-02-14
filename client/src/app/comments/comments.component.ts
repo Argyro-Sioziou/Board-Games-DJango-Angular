@@ -3,6 +3,7 @@ import { ActivatedRoute} from '@angular/router';
 
 import { Comment } from '../comment';
 import { CommentService } from '../comment.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-comments',
@@ -20,7 +21,8 @@ export class CommentsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {

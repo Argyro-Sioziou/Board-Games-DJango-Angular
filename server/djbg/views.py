@@ -1,5 +1,5 @@
-from .models import Game, Tag, Review, Comment
-from .serializers import GameSerializer, TagSerializer, ReviewSerializer, CommentSerializer
+from .models import Game, Tag, Review, Comment, Profile, User
+from .serializers import GameSerializer, TagSerializer, ReviewSerializer, CommentSerializer, ProfileSerializer, UserSerializer
 from rest_framework import generics
 
 from django.contrib.staticfiles import views
@@ -72,6 +72,7 @@ class TagList(generics.ListCreateAPIView):
 
 class CommentList(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         queryset = Comment.objects.all()
@@ -83,10 +84,31 @@ class CommentList(generics.ListCreateAPIView):
 
 class ReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         queryset = Review.objects.all()
         game_id = self.kwargs.get('game_id', None)
         if game_id is not None:
             queryset = queryset.filter(game=game_id)
+        return queryset
+
+class ProfileList(generics.ListCreateAPIView):
+    serializer_class = ProfileSerializer
+
+    def get_queryset(self):
+        queryset = Profile.objects.all()
+        profile_id = self.kwargs.get('profile_id', None)
+        if profile_id is not None:
+            queryset = queryset.filter(profile=profile_id)
+        return queryset
+
+class UserList(generics.ListCreateAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        queryset = User.objects.all()
+        user_id = self.kwargs.get('user_id', None)
+        if user_id is not None:
+            queryset = queryset.filter(user=user_id)
         return queryset

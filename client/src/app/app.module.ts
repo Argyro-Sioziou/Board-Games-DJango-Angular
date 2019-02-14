@@ -20,6 +20,10 @@ import { MessageService } from './message.service';
 import { TagService } from './tag.service';
 import { ReviewService } from './review.service';
 import { CommentService } from './comment.service';
+import { LoginComponent } from './login/login.component';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './token.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { CommentService } from './comment.service';
     SearchGameComponent,
     FiltersComponent,
     CommentsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,13 @@ import { CommentService } from './comment.service';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [ GameService, MessageService, TagService, ReviewService, CommentService ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

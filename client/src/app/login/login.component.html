@@ -1,0 +1,51 @@
+<div class="container">
+  <br>
+  <br>
+  <span [ngSwitch]="auth.isLoggedIn">
+    <span *ngSwitchCase="false">
+      <div class="row">
+        <div class="col-lg-6">
+          <form class="form-signin">
+            <h4 class="form-signin-heading">Συμπλήρωσε τα αναγνωριστικά σου</h4>
+            <label for="username" class="sr-only">Όνομα χρήστη</label>
+            <input #username
+               type="text" id="username" class="form-control"
+               placeholder="Όνομα χρήστη " autofocus required/>
+            <label for="password" class="sr-only">Κωδικός πρόσβασης</label>
+            <input #password
+               type="password" id="password" class="form-control"
+               placeholder="Κωδικός πρόσβασης" required/>
+            <span class="message"> {{message}} </span>
+            <button (click)="login(username.value, password.value)"
+                class="btn btn-lg authButton btn-block"
+                type="submit">Σύνδεση</button>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <form class="form-signin">
+            <h4 class="form-signin-heading">Δημιουργία χρήστη</h4>
+            <label for="username" class="sr-only">Όνομα χρήστη</label>
+            <input #username
+               type="text" id="username" class="form-control"
+               placeholder="Όνομα χρήστη " autofocus required/>
+            <label for="password" class="sr-only">Κωδικός πρόσβασης</label>
+            <input #password
+               type="password" id="password" class="form-control"
+               placeholder="Κωδικός πρόσβασης" required/>
+            <span class="message"> {{message}} </span>
+            <button (click)="register(username.value, password.value)"
+                class="btn btn-lg authButton btn-block"
+                type="submit">Εγγραφή</button>
+          </form>
+        </div>
+      </div>
+    </span>
+    <span *ngSwitchCase="true">
+      <form class="form-signin">
+        <button (click)="logout()"
+                class="authButton btn btn-lg btn-block">Αποσύνδεση</button>
+      </form>
+    </span>
+  </span>
+
+</div>

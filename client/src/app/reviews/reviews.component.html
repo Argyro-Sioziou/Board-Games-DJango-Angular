@@ -3,7 +3,7 @@
     <div class="col-sm-4">
       <h3>Αξιολογήσεις</h3>
     </div>
-    <div class="offset-sm-4">
+    <div class="offset-sm-4" *ngIf="auth.isLoggedIn">
       <button type="button" class="reviewButton btn btn-small" (click)="isCollapsed = !isCollapsed"
         [attr.aria-expanded]="!isCollapsed" aria-controls="newReview">
         <img src="assets/review.svg" width="20px" height="auto" class="img-fluid center" alt="">
@@ -32,6 +32,7 @@
       </form>
     </div>
   </div>
+
   <div class="row review" *ngFor="let review of reviews">
     <div class="col-2 col-sm-1">
       <div class="row">

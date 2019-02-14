@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { GameService } from '../game.service';
 
@@ -23,7 +24,7 @@ export class SearchGameComponent implements OnInit {
 
   private arrowKeyLocation = 0;
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private router: Router) { }
 
   ngOnInit(): void {
   this.games$ = this.searchTerms.pipe(

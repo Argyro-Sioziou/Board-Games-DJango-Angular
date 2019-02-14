@@ -12,4 +12,6 @@ urlpatterns = [
     re_path('^reviews/(?P<review_id>[0-9]+)/comments/?$', views.CommentList.as_view()),
     re_path(r'^games/(?P<game_id>[0-9]+)/reviews/?$',
             views.ReviewList.as_view()),
+    re_path('^profiles/?$', views.ProfileList.as_view()),
+    re_path('^users/?$', views.UserList.as_view()),
 ]

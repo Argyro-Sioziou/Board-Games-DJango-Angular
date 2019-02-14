@@ -1,5 +1,5 @@
 <div id="search-component">
-  <input #searchBox id="search-box" (click)="onClick($event)" (keydown)="arrowNavigation($event)" (keyup)="search(searchBox.value)" placeholder="Αναζήτηση"/>
+  <input #searchBox id="search-box" (keydown)="arrowNavigation($event)" (keyup)="search(searchBox.value)" placeholder="Αναζήτηση"/>
   <ul class="search-result list-unstyled">
     <li *ngFor="let game of (games$ | async); let i = index;">
       <a routerLink="/games/{{game.id}}" [class.active]="i == arrowKeyLocation">

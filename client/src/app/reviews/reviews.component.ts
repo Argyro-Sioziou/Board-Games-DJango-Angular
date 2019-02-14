@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Review } from '../review';
 import { ReviewService } from '../review.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-reviews',
@@ -19,7 +20,11 @@ export class ReviewsComponent implements OnInit {
 
   isCollapsed = true;
 
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService ) { }
+  constructor(
+    private route: ActivatedRoute,
+    private reviewService: ReviewService,
+    private auth: AuthService,
+  ) { }
 
   ngOnInit() {
     const gameId = +this.route.snapshot.paramMap.get('id');
