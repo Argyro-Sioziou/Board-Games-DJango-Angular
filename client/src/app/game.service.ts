@@ -25,7 +25,7 @@ export class GameService {
     );
   }
 
-  /** GET book by id. Will 404 if id not found */
+  /** GET game by id. Will 404 if id not found */
   getGame(id: number): Observable<Game> {
     const url = `${this.gamesUrl}/${id}`;
     return this.http.get<Game>(url).pipe(
@@ -37,12 +37,27 @@ export class GameService {
   /* GET games whose title contains search term */
   searchGames(term: string): Observable<Game[]> {
     if (!term.trim()) {
-      // if not search term, return empty book array.
+      // if not search term, return empty game array.
       return of([]);
     }
     return this.http.get<Game[]>(`api/games/?name=${term}`).pipe(
       tap(_ => this.log(`found games matching "${term}"`)),
       catchError(this.handleError<Game[]>('searchGames', []))
+    );
+  }
+
+  /* GET games whose title contains search term */
+  filterGames(filter: string): Observable<Game[]> {
+    if (!filter.trim()) {
+      return this.http.get<Game[]>(this.gamesUrl)
+      .pipe(
+      tap(_ => this.log('fetched games')),
+        catchError(this.handleError('getGames', []))
+      );
+    }
+    return this.http.get<Game[]>(`api/games/${filter}`).pipe(
+      tap(_ => this.log(`found games matching "${filter}"`)),
+      catchError(this.handleError<Game[]>('filterGames', []))
     );
   }
 

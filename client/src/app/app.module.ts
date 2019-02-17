@@ -14,6 +14,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { SearchGameComponent } from './search-game/search-game.component';
 import { FiltersComponent } from './filters/filters.component';
 import { CommentsComponent } from './comments/comments.component';
+import { UsersComponent } from './users/users.component';
 
 import { GameService } from './game.service';
 import { MessageService } from './message.service';
@@ -37,6 +38,7 @@ import { TokenInterceptor } from './token.interceptor';
     FiltersComponent,
     CommentsComponent,
     LoginComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

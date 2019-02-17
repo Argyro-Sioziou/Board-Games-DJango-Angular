@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Game } from '../game';
 import { GameService } from '../game.service';
@@ -11,17 +11,24 @@ import { GameService } from '../game.service';
 
 export class DashboardComponent implements OnInit {
 
+  url = "";
+
   games: Game[] = [];
 
   constructor(private gameService: GameService) { }
 
   ngOnInit() {
-    this.getGames();
+    this.getGames(this.url);
   }
 
-  getGames(): void {
-    this.gameService.getGames()
+  getGames(url): void {
+    this.gameService.filterGames(url)
       .subscribe(games => this.games = games);
+  }
+
+  onFiltered(event: string) {
+    this.url = event;
+    this.getGames(event);
   }
 
 }

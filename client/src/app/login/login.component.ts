@@ -12,7 +12,10 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
 
-  message: string;
+  login_message: string;
+  register_message: string;
+  logout_message: string;
+  closed = true;
 
   constructor(
     private auth: AuthService,
@@ -25,22 +28,26 @@ export class LoginComponent {
         if (res) {
           this.router.navigate(['/']);
         } else {
-          this.message = "Ουπς, λάθος όνομα χρήστη ή κωδικός πρόσβασης. Βεβαιώσου ότι είσαι εγγεγραμένος/η."
+          this.login_message = "Ουπς, λάθος όνομα χρήστη ή κωδικός πρόσβασης. Βεβαιώσου ότι είσαι εγγεγραμένος/η."
         }
     });
   }
 
   register(username, password) {
-    this.auth.login(username, password)
+    this.auth.register(username, password)
       .subscribe(res => {
         if (res) {
           this.router.navigate(['/']);
+        } else {
+          this.register_message = "Βεβαιώσου οτι ο κωδικός έχει τουλάχσιτον 8 χαρακτήρες και τουλάχιστον 1 μή αριθμητικό χαρακτήρα."
         }
     });
   }
 
   logout() {
     this.auth.logout();
-    this.message = "Αποσυνδέθηκες επιτυχώς."
+    this.logout_message = "Αποσυνδέθηκες επιτυχώς."
+    this.closed = false;
   }
+
 }

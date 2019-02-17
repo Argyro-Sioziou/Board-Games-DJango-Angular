@@ -1,3 +1,5 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 .sidenav {
     height: 100%;
     width: 100%;
@@ -5,4 +7,66 @@
     background-color: transparent;
     overflow-x: hidden;
     left: 5px;
+}
+
+/**
+ * Create the box for the checkbox
+ */
+.checkbox{
+  position: absolute;
+    cursor: pointer;
+    background: #eee;
+    border:1px solid #ddd;
+}
+
+input[type=checkbox] { opacity: 0;} /* to hide the checkbox itself */
+input[type=checkbox] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
+input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+
+input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
+input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
+
+.filter{
+  border-top: 2px solid black;
+}
+
+.choices {
+  height:500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.authButton {
+  float: center;
+  background-color: #D80027;
+  color: #ffffff;
+  border-radius: 0.8em;
+  margin-top: 0.5em;
+}
+
+.btn {
+  text-transform:none;
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 .2rem rgba(255, 0, 0, 0.25);
+}
+
+.filters .form-control:focus {
+  z-index: 2;
+  box-shadow: 0 0 0 .1rem rgba(255, 0, 0, 0.25);
+  border-color: rgba(255, 0, 0, 0.25);
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
