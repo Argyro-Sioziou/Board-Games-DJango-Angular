@@ -15,6 +15,8 @@ def index(request, path=''):
 
 class GameList(generics.ListCreateAPIView):
     queryset = Game.objects.all()
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    authentication_classes = []
     serializer_class = GameSerializer
 
     def get_queryset(self):
@@ -56,6 +58,8 @@ class GameList(generics.ListCreateAPIView):
 
 class GameDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GameSerializer
+    authentication_classes = []
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         queryset = Game.objects.all()
@@ -67,6 +71,7 @@ class GameDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class TagList(generics.ListCreateAPIView):
     serializer_class = TagSerializer
+    authentication_classes = []
     queryset = Tag.objects.all()
 
 
@@ -95,6 +100,7 @@ class ReviewList(generics.ListCreateAPIView):
 
 class ProfileList(generics.ListCreateAPIView):
     serializer_class = ProfileSerializer
+    authentication_classes = []
 
     def get_queryset(self):
         queryset = Profile.objects.all()
@@ -105,6 +111,7 @@ class ProfileList(generics.ListCreateAPIView):
 
 class UserList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
+    authentication_classes = []
 
     def get_queryset(self):
         queryset = User.objects.all()
@@ -115,6 +122,7 @@ class UserList(generics.ListCreateAPIView):
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
+    authentication_classes = []
 
     def get_queryset(self):
         queryset = User.objects.all()

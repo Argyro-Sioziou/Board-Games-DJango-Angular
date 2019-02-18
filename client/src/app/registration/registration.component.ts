@@ -43,16 +43,14 @@ export class RegistrationComponent implements OnInit {
     }
 
     if(flag) {
-      this.userService.newUser({username, password} as User);
-      this.register_message = "Εδώ πάει.";
-      this.auth.login(username, password)
-        .subscribe(res => {
-          if (res) {
-            this.router.navigate(['/']);
-          } else {
-            this.register_message = "Φαίνεται οτι κάτι πήγε στραβά. Προσπάθησε ξανά."
-          }
-      });
+      this.userService.addUser({username, password} as User)
+      .subscribe(res => {
+        if (res) {
+          this.router.navigate(['/login']);
+        } else {
+          this.register_message = "Το όνομα χρήστη ήδη χρησιμοποείται, δοκιμάστε κάποιο άλλο."
+        }
+    });
     }
   }
 }

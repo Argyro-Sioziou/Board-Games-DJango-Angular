@@ -53,33 +53,6 @@ export class AuthService {
       );
   }
 
-  register(username, password) : Observable<boolean> {
-    const authUrl = `api/token/`;
-    var credentials = new Credentials(username, password);
-    return this.http
-      .post(authUrl, credentials, httpOptions).pipe(
-        map(results => {
-          if (results['access']) {
-            localStorage.setItem('bangular-jwt-access-token',
-                                 results['access']);
-            this.isLoggedIn = true;
-            this.username = username;
-            if (results['refresh']) {
-              localStorage.setItem('bangular-jwt-refresh-token',
-                                   results['refresh']);
-            }
-            return true;
-          } else {
-            return false;
-          }
-        }),
-        catchError(error => {
-          console.log(`Login service: ${error}`);
-          return of(false);
-        })
-      );
-  }
-
   logout(): void {
     this.isLoggedIn = false;
     this.username = "Unknown";

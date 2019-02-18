@@ -11,6 +11,10 @@ export class AppComponent {
 
   title = "Rolling";
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService) {
+    if(localStorage.getItem('bangular-jwt-refresh-token') !== null) {
+      this.auth.isLoggedIn = true;
+    }
+  }
 
 }
