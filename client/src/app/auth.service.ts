@@ -22,6 +22,7 @@ const httpOptions = {
 export class AuthService {
 
   isLoggedIn: boolean = false;
+  username: string = "Unknown";
 
   constructor(private http: HttpClient) { }
 
@@ -35,6 +36,34 @@ export class AuthService {
             localStorage.setItem('bangular-jwt-access-token',
                                  results['access']);
             this.isLoggedIn = true;
+            this.username = username;
+            if (results['refresh']) {
+              localStorage.setItem('bangular-jwt-refresh-token',
+                                   results['refresh']);
+            }
+            return true;
+          } else {
+            return false;
+          }
+        }),
+        catchError(error => {
+          console.log(`Login service: ${error}`);
+          return of(false);
+        })
+      );
+  }
+
+  register(username, password) : Observable<boolean> {
+    const authUrl = `api/token/`;
+    var credentials = new Credentials(username, password);
+    return this.http
+      .post(authUrl, credentials, httpOptions).pipe(
+        map(results => {
+          if (results['access']) {
+            localStorage.setItem('bangular-jwt-access-token',
+                                 results['access']);
+            this.isLoggedIn = true;
+            this.username = username;
             if (results['refresh']) {
               localStorage.setItem('bangular-jwt-refresh-token',
                                    results['refresh']);
@@ -53,6 +82,7 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
+    this.username = "Unknown";
     localStorage.removeItem('bangular-jwt-access-token');
     localStorage.removeItem('bangular-jtw-refresh-token');
   }
