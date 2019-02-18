@@ -29,6 +29,15 @@ export class UserService {
     );
   }
 
+  /** GET game by id. Will 404 if id not found */
+  getUser(username: string): Observable<User> {
+    const url = `${this.usersUrl}/${username}`;
+    return this.http.get<User>(url).pipe(
+      tap(_ => this.log(`fetched user id=${username}`)),
+      catchError(this.handleError<User>(`getUsername username=${username}`))
+);
+  }
+
   /** POST: add a new user to the server */
   addUser(user: User): Observable<User> {
     let url = `api/users`;

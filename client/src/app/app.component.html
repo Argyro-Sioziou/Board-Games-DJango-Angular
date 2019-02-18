@@ -11,7 +11,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a type="button" placement="bottom" ngbTooltip="Είσοδος/Εγγραφή" class="nav-link right-image" routerLink="/login">
+          <a *ngIf="this.auth.isLoggedIn" type="button" placement="bottom" ngbTooltip="Εγώ" class="nav-link right-image" routerLink="/login">
+            <img src="assets/pawn.svg" width="40" height="40" class="d-inline-block hoverable " alt="">
+          </a>
+          <a *ngIf="!this.auth.isLoggedIn" type="button" placement="bottom" ngbTooltip="Είσοδος/Εγγραφή" class="nav-link right-image" routerLink="/login">
             <img src="assets/pawn.svg" width="40" height="40" class="d-inline-block hoverable " alt="">
           </a>
         </li>

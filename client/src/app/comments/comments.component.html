@@ -7,7 +7,7 @@
     <div class="col-8 content">
       <form (ngSubmit)="onSubmit()" #commentForm="ngForm">
         <div class="form-group">
-          <span class="username">My name</span>
+          <span class="username">{{ this.auth.username }}</span>
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="text" [(ngModel)]="comment.text" placeholder="Σχολίασε εδώ την αξιολόγηση..." name="text" required>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col-8 content">
-      <span class="username">My name</span>
+      <span class="username">{{ comment.user }}</span>
       <br>
       <p class="scroll"> {{ comment.text }}</p>
     </div>

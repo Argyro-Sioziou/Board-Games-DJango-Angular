@@ -34,7 +34,7 @@ export class CommentsComponent implements OnInit {
   newComment(reviewId: number): Comment {
     const comment = new Comment();
     comment.review = reviewId;
-    comment.profile = 5;
+    comment.user = this.auth.username;
     comment.text = '';
     comment.comment_date = new Date();
     return comment;

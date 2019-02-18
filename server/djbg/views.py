@@ -75,7 +75,7 @@ class CommentList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
-        queryset = Comment.objects.all()
+        queryset = Comment.objects.all().order_by('-comment_date')
         review_id = self.kwargs.get('review_id', None)
         if review_id is not None:
             queryset = queryset.filter(review=review_id)
@@ -87,7 +87,7 @@ class ReviewList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
-        queryset = Review.objects.all()
+        queryset = Review.objects.all().order_by('-review_date')
         game_id = self.kwargs.get('game_id', None)
         if game_id is not None:
             queryset = queryset.filter(game=game_id)
@@ -108,7 +108,17 @@ class UserList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = User.objects.all()
-        user_id = self.kwargs.get('user_id', None)
+        username = self.kwargs.get('username', None)
+        if username is not None:
+            queryset = queryset.filter(user=username)
+        return queryset
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        queryset = User.objects.all()
+        user_id = self.request.query_params.get('id', None)
         if user_id is not None:
-            queryset = queryset.filter(user=user_id)
+            queryset = queryset.filter(id=user_id)
         return queryset

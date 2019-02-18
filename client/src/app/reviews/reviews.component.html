@@ -23,7 +23,7 @@
       <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
         <div class="form-group">
           <app-ratings readonly="" [rate]='this.rate' (rated)='onRated($event)'></app-ratings>
-          <span class="username">My name</span>
+          <span class="username">{{ this.auth.username }}</span>
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="text" [(ngModel)]="review.text" placeholder="Γράψε εδώ..." name="text" required>
@@ -42,7 +42,7 @@
     <div class="col-10 content">
       <app-ratings readonly="true" [rate]="review.rate"></app-ratings>
       &nbsp;
-      <span class="username">My name</span>
+      <span class="username">{{ review.user }}</span>
       <br>
       <p class="scroll">{{ review.text }}</p>
     </div>

@@ -14,4 +14,5 @@ urlpatterns = [
             views.ReviewList.as_view()),
     re_path('^profiles/?$', views.ProfileList.as_view()),
     re_path('^users/?$', views.UserList.as_view()),
+    re_path('^users/(?P<pk>\d+)/?$', views.UserDetail.as_view()),
 ]

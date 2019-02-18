@@ -62,15 +62,16 @@ class Picture_game(Picture):
 class Review(models.Model):
     game = models.ForeignKey(Game, related_name='review', on_delete=models.CASCADE)
     rate = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    user = models.TextField(default="Argyro")
     text = models.TextField(default="")
     review_date = models.DateTimeField()
 
     def __str__(self):
-        return "%s %s %s %s" % (self.game, self.rate, self.text, self.review_date)
+        return "%s %s %s %s %s" % (self.game, self.rate, self.user, self.text, self.review_date)
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, related_name='comments', on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, related_name='comments', on_delete=models.CASCADE)
+    user = models.TextField(default="Argyro")
     text = models.TextField(default="")
     comment_date = models.DateTimeField()
 

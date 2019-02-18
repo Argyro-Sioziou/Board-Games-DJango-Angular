@@ -1,7 +1,7 @@
 export class Comment {
   id: number;
   review: number;
-  profile: number;
+  user: string;
   text: string;
   comment_date: Date;
 }
