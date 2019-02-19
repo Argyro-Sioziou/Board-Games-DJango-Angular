@@ -61,7 +61,7 @@ export class AuthService {
     this.isLoggedIn = false;
     this.username = "Unknown";
     localStorage.removeItem('bangular-jwt-access-token');
-    localStorage.removeItem('bangular-jwt-refresh-token');
+    localStorage.removeItem('username');
   }
 
 }
