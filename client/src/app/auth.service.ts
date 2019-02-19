@@ -35,11 +35,15 @@ export class AuthService {
           if (results['access']) {
             localStorage.setItem('bangular-jwt-access-token',
                                  results['access']);
+            localStorage.setItem('username',
+                                  username);
             this.isLoggedIn = true;
             this.username = username;
             if (results['refresh']) {
               localStorage.setItem('bangular-jwt-refresh-token',
                                    results['refresh']);
+              localStorage.setItem('username',
+                                   username);
             }
             return true;
           } else {
