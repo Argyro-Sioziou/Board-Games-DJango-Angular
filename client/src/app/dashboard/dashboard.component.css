@@ -1,11 +1,11 @@
 .image {
   opacity: 1;
   display: block;
-  width: 100%;
-  height: auto;
   transition: .5s ease;
   backface-visibility: hidden;
   margin-bottom: 8px;
+  height: 300px;
+  width: 300px;
 }
 
 .middle {
@@ -29,4 +29,10 @@
 
 .badge {
   background-color: #DF1C1C !important;
+}
+
+.center {
+  position: absolute;
+  left:40%;
+  padding-top: 20px;
 }

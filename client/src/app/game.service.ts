@@ -2,10 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
 
 import { MessageService } from './message.service';
 
 import { Game } from './game';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -34,16 +39,22 @@ export class GameService {
     );
   }
 
+  /** PUT: update the game on the server */
+ updateGame (game: Game): Observable<Game> {
+   const url = `${this.gamesUrl}/${game.id}`;
+   return this.http.put(url, game, httpOptions).pipe(
+     tap(_ => this.log(`updated game id=${game.id}`)),
+     catchError(this.handleError<any>('updateGame'))
+   );
+}
+
   /* GET games whose title contains search term */
   searchGames(term: string): Observable<Game[]> {
     if (!term.trim()) {
       // if not search term, return empty game array.
       return of([]);
     }
-    return this.http.get<Game[]>(`api/games/?name=${term}`).pipe(
-      tap(_ => this.log(`found games matching "${term}"`)),
-      catchError(this.handleError<Game[]>('searchGames', []))
-    );
+    return this.http.get<Game[]>(`api/games/?name=${term}`).pipe(delay(2000));
   }
 
   /* GET games whose title contains search term */

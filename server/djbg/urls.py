@@ -15,4 +15,6 @@ urlpatterns = [
     re_path('^profiles/?$', views.ProfileList.as_view()),
     re_path('^users/?$', views.UserList.as_view()),
     re_path('^users/(?P<pk>\d+)/?$', views.UserDetail.as_view()),
+    re_path('^pictures/?$', views.PictureGameList.as_view()),
+    re_path('^games/(?P<game_id>[0-9]+)/pictures/?$', views.PictureGameList.as_view()),
 ]

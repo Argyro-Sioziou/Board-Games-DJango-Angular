@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Tag, Game, Creator, Review, Comment, Profile, User
+from .models import Tag, Game, Creator, Review, Comment, Profile, User, Picture_game
 
 
 class GameSerializer(serializers.ModelSerializer):
@@ -37,6 +37,11 @@ class CommentSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
+        fields = ('__all__')
+
+class PictureGameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Picture_game
         fields = ('__all__')
 
 class UserSerializer(serializers.ModelSerializer):

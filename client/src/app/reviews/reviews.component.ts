@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
+import { Game } from '../game';
 import { Review } from '../review';
 import { ReviewService } from '../review.service';
+import { GameService } from '../game.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -15,6 +17,7 @@ export class ReviewsComponent implements OnInit {
 
   reviews: Review[];
   review: Review;
+  game: Game;
 
   rate = 0;
 
@@ -23,6 +26,7 @@ export class ReviewsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private reviewService: ReviewService,
+    private gameService: GameService,
     private auth: AuthService,
   ) { }
 
@@ -31,6 +35,13 @@ export class ReviewsComponent implements OnInit {
       this.review = this.newReview(gameId);
       return this.reviewService.getReviews(gameId)
       .subscribe(reviews => this.reviews = reviews);
+    this.getGame();
+  }
+
+  getGame(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.gameService.getGame(id)
+      .subscribe(game => this.game = game);
   }
 
   newReview(gameId: number): Review {
@@ -53,7 +64,13 @@ export class ReviewsComponent implements OnInit {
         if (review) {
           this.reviews.unshift(review);
           this.review = this.newReview(review.game);
+          this.gameService.updateGame(this.game).subscribe(game => this.game = game);
         }
     });
   }
+
+    updateGame(game: Game) {
+      this.gameService.updateGame(game);
+  }
+
 }

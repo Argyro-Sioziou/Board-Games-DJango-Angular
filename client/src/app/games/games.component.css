@@ -22,6 +22,7 @@
 
 .card-body {
   background-color: #f4f2f2;
+  border-radius: 0.5em;
 }
 
 .card {
@@ -29,9 +30,7 @@
   background-color: transparent;
 }
 
-.card-body {
-  background-color: transparent;
-}
+
 
 .card .card-body .card-text {
   color: black;

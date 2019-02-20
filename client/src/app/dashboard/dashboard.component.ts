@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Game } from '../game';
 import { GameService } from '../game.service';
+import { Picture } from '../picture';
+import { PictureService } from '../picture.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,8 +16,9 @@ export class DashboardComponent implements OnInit {
   url = "";
 
   games: Game[] = [];
+  pictures: Picture[] = [];
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private pictureService: PictureService) { }
 
   ngOnInit() {
     this.getGames(this.url);

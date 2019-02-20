@@ -1,5 +1,5 @@
-from .models import Game, Tag, Review, Comment, Profile, User
-from .serializers import GameSerializer, TagSerializer, ReviewSerializer, CommentSerializer, ProfileSerializer, UserSerializer
+from .models import Game, Tag, Review, Comment, Profile, User, Picture_game
+from .serializers import GameSerializer, TagSerializer, ReviewSerializer, CommentSerializer, ProfileSerializer, UserSerializer, PictureGameSerializer
 from rest_framework import generics
 
 from django.contrib.staticfiles import views
@@ -107,6 +107,17 @@ class ProfileList(generics.ListCreateAPIView):
         profile_id = self.kwargs.get('profile_id', None)
         if profile_id is not None:
             queryset = queryset.filter(profile=profile_id)
+        return queryset
+
+class PictureGameList(generics.ListCreateAPIView):
+    serializer_class = PictureGameSerializer
+    authentication_classes = []
+
+    def get_queryset(self):
+        queryset = Picture_game.objects.all()
+        game_id = self.kwargs.get('game_id', None)
+        if game_id is not None:
+            queryset = queryset.filter(game=game_id)
         return queryset
 
 class UserList(generics.ListCreateAPIView):
