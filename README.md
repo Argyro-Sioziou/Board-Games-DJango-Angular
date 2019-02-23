@@ -23,3 +23,56 @@ Through the dashboard you can discover many board games from various categories.
 
 ## Become a Rolling member
 By clicking on the pawn icon on the top right of the page you can login to your account. If you do not own an account you can create one by clicking on the text on the bottom. With your account you have the ability to review board games and comment on other users' reviews and exchange opinions.
+
+# Installation
+In order to be able to run the app locally you have to follow the instructions bellow.
+
+## Prequisities
+* python
+* mysql-server
+* mysqlclient
+* 
+
+## Get the code(of course)
+### Navigate to the folder you would like your project to be located and write:
+```ruby
+git clone https://github.com/Argyro-Sioziou/board_games.git
+```
+
+## MySQL
+### Open MySQL SHELL by writing:
+```ruby
+mysql -u root -p
+```
+
+### Then create your database by running the commands below(you can obviously put the credentials of your preference).
+```ruby
+CREATE DATABASE djbg CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE USER 'djbg_user'@'localhost' IDENTIFIED BY 'g8nzMktk6@y';
+
+GRANT ALL PRIVILEGES ON djbg.* TO 'djbg_user'@'localhost';
+```
+
+### Create site_config.py file in the following path board_games/server/djbg/rolling. Fill it in with the following lines. Don't forget to adjust your credentials.
+```ruby
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djbg',
+        'USER': 'djbg_user',
+        'PASSWORD': 'g8nzMktk6@y',
+        'HOST': '127.0.0.1',
+        'OPTIONS': {
+            'isolation_level': 'read committed'
+        }
+    }
+}
+```
+Exit MySQL SHELL.
+
+### Create the tables
+Navigate to board_games/server folder to create the tables using the command:
+```ruby
+manage.py migrate
+```
