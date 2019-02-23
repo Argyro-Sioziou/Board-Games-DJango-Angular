@@ -14,6 +14,7 @@ You can visit the website by clicking [here](https://snf-845181.vm.okeanos.grnet
 * MySQL
 * Nginx
 * Gunicorn
+* Tested in Mozilla Firefox
 
 # Navigate inside the website
 
@@ -21,4 +22,4 @@ You can visit the website by clicking [here](https://snf-845181.vm.okeanos.grnet
 Through the dashboard you can discover many board games from various categories. In case you have preferences you can use the filters section on the left side and get more personalized results.
 
 ## Become a Rolling member
-By clicking on the pawn icon on the top right of the page you can login to your account. If you do not own an account you can create one by clicking on the text on the bottom. With your account you have the ability to review board games and comment to other users' reviews and exchange opinions.
+By clicking on the pawn icon on the top right of the page you can login to your account. If you do not own an account you can create one by clicking on the text on the bottom. With your account you have the ability to review board games and comment on other users' reviews and exchange opinions.
