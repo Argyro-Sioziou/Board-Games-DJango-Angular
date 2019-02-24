@@ -32,6 +32,7 @@ In order to be able to run the app locally you have to follow the instructions b
 * python
 
 ### Tools, frameworks and libraries
+* Angular
 * mysql-server
 * mysqlclient
 * djangorestframework
@@ -89,3 +90,16 @@ python manage.py seed_db Tag seed_tags.csv
 python manage.py seed_db Creator seed_creators.csv
 python manage.py seed_db Game seed_games.csv
 ```
+
+## Django
+Navigate to the board_games/server folder and execute:
+```ruby
+python manage.py runserver
+```
+## Angular
+In a new cmd navigate to the board_games/client folder and execute:
+```ruby
+ng serve --open
+```
+
+After a few seconds the site should open on your browser. If not visit the url [http://localhost:4200/games](http://localhost:4200/games).
