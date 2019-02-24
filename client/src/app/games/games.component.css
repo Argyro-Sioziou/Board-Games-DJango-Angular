@@ -1,3 +1,8 @@
+.image {
+  height: 250px;
+  width: 250px;
+}
+
 .details {
   padding-bottom: 30%;
   padding-top: 10%;

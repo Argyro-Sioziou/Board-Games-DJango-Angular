@@ -48,6 +48,7 @@ export class ReviewsComponent implements OnInit {
     const review = new Review();
     review.game = gameId;
     review.rate = this.rate;
+    review.user = this.auth.username;
     review.text = '';
     review.review_date = new Date();
     return review;

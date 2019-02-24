@@ -142,6 +142,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+from pathlib import Path
+STATICFILES_DIRS = (
+    os.path.join(str(Path(BASE_DIR).parents[0]), os.path.join('client', 'dist')),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'dist')
+
 try:
     from .site_config import *
 except ImportError as ex:
