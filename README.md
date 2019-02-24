@@ -28,10 +28,15 @@ By clicking on the pawn icon on the top right of the page you can login to your 
 In order to be able to run the app locally you have to follow the instructions bellow.
 
 ## Prequisities
+### Language
 * python
+
+### Tools, frameworks and libraries
 * mysql-server
 * mysqlclient
-* 
+* djangorestframework
+* pillow
+* djangorestframework_simplejwt
 
 ## Get the code(of course)
 ### Navigate to the folder you would like your project to be located and write:
@@ -74,5 +79,13 @@ Exit MySQL SHELL.
 ### Create the tables
 Navigate to board_games/server folder to create the tables using the command:
 ```ruby
-manage.py migrate
+python manage.py migrate
+```
+
+### Fill the tables with data
+Go to board_games/server folder. The first table to be filled will be the Tag table, then the Creator table and finally the Game table. Execute:
+```ruby
+python manage.py seed_db Tag seed_tags.csv
+python manage.py seed_db Creator seed_creators.csv
+python manage.py seed_db Game seed_games.csv
 ```
