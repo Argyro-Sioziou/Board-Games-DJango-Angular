@@ -1,6 +1,5 @@
 # About
 A web app in greek about board games. 
-You can visit the website by clicking [here](https://snf-845181.vm.okeanos.grnet.gr/).
 
 # What can you use it for?
 * Discover board games
